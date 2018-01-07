@@ -1,28 +1,28 @@
-create table CLIENTE (
-	id text PRIMARY key,
-	nome text not null,
-	cpf varchar(11) not null,
-	data_nascimento timestamp	
-);
+CREATE SEQUENCE SEQ_CLIENTE START 1;
+CREATE SEQUENCE SEQ_ENDERECO START 1;
+CREATE SEQUENCE SEQ_TELEFONE START 1;
 
 create table ENDERECO (
-	id bigint,
+	endereco_id bigint PRIMARY KEY,
 	estado text not null,
 	cidade text not null,
 	rua text not null,
-	numero integer,
-	complemento text,
-	cep bigint,
-	cliente_id text references cliente
+	numero integer null,
+	complemento text null,
+	cep bigint null
+);
+
+create table CLIENTE (
+	cliente_id text PRIMARY KEY,
+	nome text not null,
+	cpf text not null,
+	data_nascimento timestamp,
+	endereco_id bigint references ENDERECO ON DELETE CASCADE
 );
 
 CREATE TABLE TELEFONE (
-    id bigint PRIMARY KEY,
+    telefone_id bigint PRIMARY KEY,
     tipo varchar(7) NOT NULL,
-    numero bigint NOT null    
-);
-
-CREATE TABLE CLIENTE_TELEFONE (
-  	client_id text,
-  	telefone_id bigint
+    numero text NOT NULL,
+    cliente_id text references CLIENTE (cliente_id)
 );

@@ -1,7 +1,10 @@
 package com.gusrubin.proofs.clients.interfaces;
 
 import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.gusrubin.proofs.clients.domain.Cliente;
@@ -24,7 +27,13 @@ public class ClientePayloadConverter {
 				cliente.setCpf(String.valueOf(clientePayload.getCpf()));
 			}
 			if (clientePayload.getDataDeNascimento() != null) {
-				cliente.setDataDeNascimento(Timestamp.valueOf(clientePayload.getDataDeNascimento()));
+				try {
+					SimpleDateFormat dataNascimento = new SimpleDateFormat("dd-MM-yyyy");
+					Date dataFormatada = dataNascimento.parse(clientePayload.getDataDeNascimento());
+					cliente.setDataDeNascimento(new Timestamp(dataFormatada.getTime()));
+				} catch (ParseException pe) {
+					throw new IllegalArgumentException("Erro na conversão do formato da data de nascimento.");
+				}
 			}
 		}
 		
@@ -38,6 +47,15 @@ public class ClientePayloadConverter {
 			}
 			if (clientePayload.getEndereco().getRua() != null) {
 				endereco.setRua(clientePayload.getEndereco().getRua());
+			}
+			if (clientePayload.getEndereco().getNumero() != null) {
+				endereco.setNumero(clientePayload.getEndereco().getNumero());
+			}
+			if (clientePayload.getEndereco().getComplemento() != null) {
+				endereco.setComplemento(clientePayload.getEndereco().getComplemento());
+			}
+			if (clientePayload.getEndereco().getCep() != null) {
+				endereco.setCep(clientePayload.getEndereco().getCep());
 			}
 		}
 		cliente.setEndereco(endereco);
@@ -69,7 +87,10 @@ public class ClientePayloadConverter {
 			clientePayload.setCpf(cliente.getCpf());
 		}
 		if (cliente.getDataDeNascimento() != null) {
-			clientePayload.setDataDeNascimento(cliente.getDataDeNascimento().toString());
+			Date date = new Date();
+			date.setTime(cliente.getDataDeNascimento().getTime());
+			String formattedDate = new SimpleDateFormat("dd-MM-yyyy").format(date);
+			clientePayload.setDataDeNascimento(formattedDate);
 		}
 		
 		ClientePayload.Endereco endereco = new ClientePayload.Endereco();
@@ -94,21 +115,8 @@ public class ClientePayloadConverter {
 			}
 		}
 		clientePayload.setEndereco(endereco);
-		
-		List<ClientePayload.Telefone> telefones = new ArrayList<>();
-		if (cliente.getTelefones() != null) {
-			cliente.getTelefones().forEach(c -> {
-				ClientePayload.Telefone telefone = new ClientePayload.Telefone();
-				if (c.getTipo() != null) {
-					telefone.setTipo(c.getTipo());
-				}
-				if (c.getNumero() != null) {
-					telefone.setNumero(c.getNumero());
-				}
-				telefones.add(telefone);
-			});
-		}
-		clientePayload.setTelefones(telefones);
+
+		clientePayload.setTelefones(null);
 		
 		return clientePayload;		
 	}

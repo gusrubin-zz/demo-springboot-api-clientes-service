@@ -24,7 +24,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class Cliente {
 	
 	@Id
-	@Column(name = "ID", unique = true, nullable = false)
+	@Column(name = "CLIENTE_ID", unique = true, nullable = false)
 	@GeneratedValue(generator = "uuid2")
 	@GenericGenerator(name = "uuid2", strategy = "uuid2")
 	private String id;
@@ -36,10 +36,10 @@ public class Cliente {
 	private String cpf;
 	@Column(name = "DATA_NASCIMENTO")
 	private Timestamp dataDeNascimento;
-	@OneToOne(mappedBy="cliente")
+	@OneToOne()
+	@JoinColumn(name="ENDERECO_ID")
 	private Endereco endereco;
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinTable(name="TELEFONE", joinColumns={@JoinColumn(name = "CLIENT_ID")}, inverseJoinColumns={@JoinColumn(name = "TELEFONE_ID")})
+	@OneToMany(mappedBy="cliente", cascade = CascadeType.ALL)
 	private List<Telefone> telefones;
 	
 	public String getId() {
@@ -71,7 +71,7 @@ public class Cliente {
 	}
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
-	}	
+	}
 	public List<Telefone> getTelefones() {
 		return telefones;
 	}

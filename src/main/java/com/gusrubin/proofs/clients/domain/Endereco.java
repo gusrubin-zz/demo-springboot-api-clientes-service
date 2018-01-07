@@ -1,9 +1,11 @@
 package com.gusrubin.proofs.clients.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -14,6 +16,9 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class Endereco {
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "auto_gen")
+	@SequenceGenerator(name = "auto_gen", sequenceName = "SEQ_ENDERECO")
+	@Column(name = "ENDERECO_ID")
 	private Long id;
 	@NotNull
 	@NotEmpty
@@ -27,9 +32,6 @@ public class Endereco {
 	private Integer numero;
 	private String complemento;
 	private Integer cep;
-	@OneToOne
-	@PrimaryKeyJoinColumn
-	private Cliente cliente;
 	
 	public Long getId() {
 		return id;
@@ -73,16 +75,11 @@ public class Endereco {
 	public void setCep(Integer cep) {
 		this.cep = cep;
 	}
-	public Cliente getCliente() {
-		return cliente;
-	}
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
+	
 	@Override
 	public String toString() {
 		return "Endereco [id=" + id + ", estado=" + estado + ", cidade=" + cidade + ", rua=" + rua + ", numero="
-				+ numero + ", complemento=" + complemento + ", cep=" + cep + ", clienteId=" + cliente.getId() + "]";
+				+ numero + ", complemento=" + complemento + ", cep=" + cep + "]";
 	}	
 
 }

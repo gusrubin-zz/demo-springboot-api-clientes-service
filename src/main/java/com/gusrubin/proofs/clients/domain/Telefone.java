@@ -1,10 +1,14 @@
 package com.gusrubin.proofs.clients.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -15,14 +19,17 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class Telefone {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "auto_gen")
+	@SequenceGenerator(name = "auto_gen", sequenceName = "SEQ_TELEFONE")
+	@Column(name = "TELEFONE_ID")
 	private Long id;
 	@NotNull
 	@NotEmpty
 	private String tipo;
 	@NotNull
 	private String numero;
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;
 	
 	public Long getId() {
@@ -52,7 +59,7 @@ public class Telefone {
 	
 	@Override
 	public String toString() {
-		return "Telefone [id=" + id + ", tipo=" + tipo + ", numero=" + numero + ", clienteId=" + cliente.getId() + "]";
+		return "Telefone [id=" + id + ", tipo=" + tipo + ", numero=" + numero + "]";
 	}	
 
 }

@@ -1,5 +1,8 @@
 package com.gusrubin.proofs.clients.interfaces;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 import org.springframework.util.StringUtils;
 
 import com.gusrubin.proofs.clients.domain.TelefoneType;
@@ -23,6 +26,9 @@ public class ClientePayloadValidator {
 		if (clientePayload.getDataDeNascimento() == null || StringUtils.isEmpty(clientePayload.getDataDeNascimento())) {
 			throw new IllegalArgumentException("Faltando informar a data de nascimento.");
 		}
+		if (!isDataNascimentoValid(clientePayload.getDataDeNascimento())) {
+			throw new IllegalArgumentException("Formato da data de nascimento inválido, deve ser DD-MM-AAAA.");
+		}
 		if (clientePayload.getEndereco() == null) {
 			throw new IllegalArgumentException("Faltando informações do endereço do cliente.");
 		}
@@ -39,7 +45,7 @@ public class ClientePayloadValidator {
 			throw new IllegalArgumentException("Faltando informações de telefones do cliente.");
 		}
 		clientePayload.getTelefones().forEach(c -> {
-			if (c.getTipo() == null || TelefoneType.CELULAR.equals(c.getTipo() == null) {
+			if (c.getTipo() == null || !isTelefoneValid(c.getTipo())) {
 				throw new IllegalArgumentException("Tipo de telefone inválido ou não informado, deve ser FIXO ou CELULAR.");
 			}
 			if (c.getNumero() == null || String.valueOf(c.getNumero()).length() < 10) {
@@ -89,7 +95,7 @@ public class ClientePayloadValidator {
 		if (clientePayload.getTelefones() != null) {
 			clientePayload.getTelefones().forEach(c -> {
 				if (c.getTipo() != null) {
-					if (TelefoneType.valueOf(c.getTipo()) == null) {
+					if (!isTelefoneValid(c.getTipo())) {
 						throw new IllegalArgumentException("Tipo de telefone inválido, deve ser FIXO ou CELULAR.");
 					}
 				}
@@ -103,12 +109,25 @@ public class ClientePayloadValidator {
 		
 	}
 	
-	private static void isTelefoneValid(String tipoTelefone) {
+	private static boolean isTelefoneValid(String tipoTelefone) {
 		for (TelefoneType type : TelefoneType.values()) {
-			if (tipoTelefone.equals(type)) {
-				
+			if (tipoTelefone.equals(type.name())) {
+				return true;
 			}
 		}
+		return false;
+	}
+	
+	@SuppressWarnings("unused")
+	private static boolean isDataNascimentoValid(String dataDeNascimento) {
+	    SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+	    dateFormat.setLenient(false);
+	    try {
+	    	dateFormat.parse(dataDeNascimento.trim());
+	    } catch (ParseException pe) {
+	    	return false;
+	    }
+	    return true;
 	}
 
 }

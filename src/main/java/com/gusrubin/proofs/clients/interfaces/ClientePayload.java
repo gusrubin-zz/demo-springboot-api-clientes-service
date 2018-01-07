@@ -2,12 +2,16 @@ package com.gusrubin.proofs.clients.interfaces;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 public class ClientePayload {
 	
 	private String nome;
 	private String cpf;
 	private String dataDeNascimento;
 	private Endereco endereco;
+	@JsonInclude(Include.NON_NULL)
 	private List<Telefone> telefones;	
 	
 	public String getNome() {

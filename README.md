@@ -11,4 +11,8 @@ Este repositório contém:
 - o script de criação dos objetos da base de dados (sequences e tabelas), disponível no diretório src/main/resources/db/migration. Observação: Esse script é executado automaticamente pelo Flyway quando a aplicação está sendo executada pela primeira vez em uma base de dados vazia.
 - o arquivo de collection do Postman, disponível em src/test/resources
 
-O ambiente para execução da aplicação é Java 1.8 (ou superior) e banco de dados PostgreSql 10 (ou superior).
+O ambiente para execução da aplicação é Java 1.8 (ou superior) e banco de dados PostgreSql 10 (ou superior). No banco de dados é necessário criar a base de dados "clientes" antes de executar a criação das tabelas, abaixo estão as configurações necessárias do banco de dados:
+
+url=jdbc:postgresql://localhost:5432/clientes
+username=postgres
+password=postgres

@@ -14,5 +14,7 @@ Este repositório contém:
 O ambiente para execução da aplicação é Java 1.8 (ou superior) e banco de dados PostgreSql 10 (ou superior). No banco de dados é necessário criar a base de dados "clientes" antes de executar a criação das tabelas, abaixo estão as configurações necessárias do banco de dados:
 
 url=jdbc:postgresql://localhost:5432/clientes
+
 username=postgres
+
 password=postgres

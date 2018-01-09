@@ -1,3 +1,10 @@
+/**
+* Classe utilitária que disponibiliza de parâmetros constantes
+* de paths utilizados pelas interfaces controllers.
+* @version 1.0
+* @author Gustavo Rubin
+*/
+
 package com.gusrubin.proofs.clients.interfaces;
 
 public class Paths {

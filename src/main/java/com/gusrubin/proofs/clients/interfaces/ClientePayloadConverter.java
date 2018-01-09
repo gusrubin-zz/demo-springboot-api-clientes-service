@@ -1,3 +1,9 @@
+/**
+* Classe de conversão do payload do recurso Cliente da API REST para entidade Cliente do banco de dados e vice-versa.
+* @version 1.0
+* @author Gustavo Rubin
+*/
+
 package com.gusrubin.proofs.clients.interfaces;
 
 import java.sql.Timestamp;

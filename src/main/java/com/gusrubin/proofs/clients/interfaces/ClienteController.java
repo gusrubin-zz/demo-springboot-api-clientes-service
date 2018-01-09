@@ -11,7 +11,11 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import com.gusrubin.proofs.clients.domain.ClienteService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 @RestController
+@Api(tags = "Gerenciamento de Clientes")
 public class ClienteController {
 	
 	private final ClienteService clienteService;
@@ -22,6 +26,8 @@ public class ClienteController {
 		this.clienteService = clienteService;
 	}
 	
+	@ApiOperation(value = "Cadastro de novo cliente",
+			notes = "Essa operação possibilita o cadastro de um novo cliente.<br>")
 	@RequestMapping(path = Paths.CLIENTE_BASE_PATH, method = RequestMethod.POST, consumes = InterfacesCommons.APPLICATION_JSON)
     public ResponseEntity<?> postCliente(@RequestBody ClientePayload requestBody, UriComponentsBuilder uriBuilder) {
         
@@ -32,6 +38,8 @@ public class ClienteController {
         return ResponseEntity.created(uriBuilder.path(Paths.CLIENTE_SUB_RESOURCE_BASE_PATH).buildAndExpand(clienteId).toUri()).build();
     }
 	
+	@ApiOperation(value = "Atualização de cadastro de cliente",
+			notes = "Essa operação possibilita a atualização de informações de cadastro de um cliente.<br>")
 	@RequestMapping(path = Paths.CLIENTE_SUB_RESOURCE_BASE_PATH, method = RequestMethod.PATCH, consumes = InterfacesCommons.APPLICATION_JSON)
     public ResponseEntity<?> patchCliente(@RequestBody ClientePayload requestBody, 
     		@PathVariable(Paths.CLIENTE_ID_PATH_VARIABLE_NAME) String clienteId) {
@@ -43,6 +51,9 @@ public class ClienteController {
         return ResponseEntity.noContent().build();
     }
 	
+	@ApiOperation(value = "Consulta de cadastro de cliente",
+			notes = "Essa operação possibilita consultar informações do cadastro de um cliente.<br>",
+			response = ClientePayload.class)
 	@RequestMapping(path = Paths.CLIENTE_SUB_RESOURCE_BASE_PATH, method = RequestMethod.GET, produces = InterfacesCommons.APPLICATION_JSON)
     public ResponseEntity<?> getCliente(@PathVariable(Paths.CLIENTE_ID_PATH_VARIABLE_NAME) String clienteId) {
         
@@ -51,6 +62,8 @@ public class ClienteController {
         return ResponseEntity.ok(responseBody);
     }
 	
+	@ApiOperation(value = "Exclusão de cadastro de cliente",
+			notes = "Essa operação possibilita excluir o cadastro de um cliente.<br>")
 	@RequestMapping(path = Paths.CLIENTE_SUB_RESOURCE_BASE_PATH, method = RequestMethod.DELETE)
     public ResponseEntity<?> deleteCliente(@PathVariable(Paths.CLIENTE_ID_PATH_VARIABLE_NAME) String clienteId) {
         

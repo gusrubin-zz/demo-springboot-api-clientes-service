@@ -1,8 +1,8 @@
 /**
 * Classe de configurações do framework Springfox,
 * responsável por disponibilizar a documentação Swagger online, as URL úteis são:
-* Swagger UI: http://{springfox.host}:{server.port}/{server.contextPath}/swagger-ui.html
-* Swagger API-Docs: http://{springfox.host}:{server.port}/{server.contextPath}/v2/api-docs?group=api-epay-ecommerce
+* Swagger UI: http://{server.host}:{server.port}/{server.contextPath}/swagger-ui.html
+* Swagger API-Docs: http://{server.host}:{server.port}/{server.contextPath}/v2/api-docs?group=api-epay-ecommerce
 * @version 1.0
 * @author Gustavo Rubin
 */

@@ -8,7 +8,8 @@ Este repositório contém:
 - as dependências e configurações para o Maven montar o pacote do projeto (arquivo pom.xml);
 - o código fonte da aplicação, disponível no diretório src/main/java;
 - os recursos utilizados pelo framework Springboot, disponíveis no diretório src/main/resources;
-- as configurações e anotações do framework Springfox para geraçao da documentação da API no próprio código fonte;
+- as configurações e anotações do framework Springfox para geraçao da documentação da API no próprio código fonte.
+Observação: É possível acessar o Swagger UI pela URL http://{server.host}:{server.port}/{server.contextPath}/swagger-ui.html
 - o script de criação dos objetos da base de dados (sequences e tabelas), disponível no diretório src/main/resources/db/migration. Observação: Esse script é executado automaticamente pelo Flyway quando a aplicação está sendo executada pela primeira vez em uma base de dados vazia;
 - o arquivo de collection do Postman, disponível em src/test/resources.
 

@@ -1,3 +1,9 @@
+/**
+* Classe da entidade Telefone no modelo de dados.
+* @version 1.0
+* @author Gustavo Rubin
+*/
+
 package com.gusrubin.proofs.clients.domain;
 
 import javax.persistence.Column;

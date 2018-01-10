@@ -1,3 +1,9 @@
+/**
+* Classe de validação do payload do recurso Cliente da API REST.
+* @version 1.0
+* @author Gustavo Rubin
+*/
+
 package com.gusrubin.proofs.clients.interfaces;
 
 import java.text.ParseException;

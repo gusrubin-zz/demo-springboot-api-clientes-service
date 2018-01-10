@@ -1,3 +1,9 @@
+/**
+* Classe da aplicação, responsável por iniciar o container Springboot
+* @version 1.0
+* @author Gustavo Rubin
+*/
+
 package com.gusrubin.proofs.clients.app;
 
 import org.springframework.boot.SpringApplication;

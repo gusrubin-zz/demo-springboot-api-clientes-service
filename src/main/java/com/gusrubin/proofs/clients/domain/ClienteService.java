@@ -1,3 +1,10 @@
+/**
+* Classe service da entidade Cliente,
+* responsável pelas regras de negócio dessa entidade.
+* @version 1.0
+* @author Gustavo Rubin
+*/
+
 package com.gusrubin.proofs.clients.domain;
 
 import java.util.List;

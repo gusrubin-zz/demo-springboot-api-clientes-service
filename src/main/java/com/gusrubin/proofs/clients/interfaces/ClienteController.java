@@ -1,3 +1,9 @@
+/**
+* Classe de controller do recurso Cliente na API REST.
+* @version 1.0
+* @author Gustavo Rubin
+*/
+
 package com.gusrubin.proofs.clients.interfaces;
 
 import org.springframework.beans.factory.annotation.Autowired;

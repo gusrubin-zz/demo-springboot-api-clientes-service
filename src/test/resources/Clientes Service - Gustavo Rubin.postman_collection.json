@@ -2,12 +2,12 @@
 	"info": {
 		"name": "Clientes Service - Gustavo Rubin",
 		"_postman_id": "bbb0bcf4-be67-3c88-2b6a-d67124dda802",
-		"description": "",
+		"description": "Testes funcionais da API do Gerenciador de Clientes",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "Cliente Service",
+			"name": "Success flow",
 			"description": "",
 			"item": [
 				{
@@ -179,7 +179,445 @@
 					},
 					"response": []
 				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "c6dc7243-3cff-498f-9ed8-d6f306c201a8",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "1987be71-8698-4f51-9f2c-0f4545739a42",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
 			]
+		},
+		{
+			"name": "Alternative flows",
+			"description": "",
+			"item": [
+				{
+					"name": "Novo Cliente com CPF inválido",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "2f7bdeb9-d998-4421-a686-55f21fb13dd7",
+								"type": "text/javascript",
+								"exec": [
+									"postman.clearGlobalVariable(\"cliente-id\");",
+									"var cpf = postman.getGlobalVariable(\"cpf\");",
+									"if (cpf != null) {",
+									"    cpf = Number(cpf);",
+									"    cpf++;",
+									"    postman.setGlobalVariable(\"cpf\", cpf);",
+									"} else {",
+									"    postman.setGlobalVariable(\"cpf\", \"12345678910\");",
+									"}",
+									"",
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "69a0f4e5-6353-40e4-9f64-10c15909ef59",
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 201\"] = responseCode.code === 201;",
+									"",
+									"if (responseCode.code === 201) {",
+									"\ttests[\"Header 'Location' is present\"] = postman.getResponseHeader(\"Location\");",
+									"\tvar locationText = postman.getResponseHeader(\"Location\");",
+									"\tif (locationText) {",
+									"\t\tvar arr = locationText.split('/');",
+									"\t\tvar clienteId = arr[arr.length - 1];",
+									"\t\tpostman.setGlobalVariable(\"cliente-id\", clienteId);",
+									"\t}",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"nome\": \"Gustavo\",\r\n   \"cpf\": \"1234\",\r\n   \"dataDeNascimento\": \"07-07-1983\",\r\n   \"endereco\": {\r\n      \"estado\": \"SP\",\r\n      \"cidade\": \"Campinas\",\r\n      \"rua\": \"Francisco Glicério\",\r\n      \"numero\": 123,\r\n      \"complemento\": \"casa\",\r\n      \"cep\": 13033000\r\n   },\r\n   \"telefones\": [\r\n      {\r\n         \"tipo\": \"FIXO\",\r\n         \"numero\": 1930000000\r\n      },\r\n      {\r\n         \"tipo\": \"CELULAR\",\r\n         \"numero\": 19991692677\r\n      }\r\n   ]\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8081/cliente/v1/clientes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"cliente",
+								"v1",
+								"clientes"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Novo Cliente sem informação obrigatória (nome)",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "2f7bdeb9-d998-4421-a686-55f21fb13dd7",
+								"type": "text/javascript",
+								"exec": [
+									"postman.clearGlobalVariable(\"cliente-id\");",
+									"var cpf = postman.getGlobalVariable(\"cpf\");",
+									"if (cpf != null) {",
+									"    cpf = Number(cpf);",
+									"    cpf++;",
+									"    postman.setGlobalVariable(\"cpf\", cpf);",
+									"} else {",
+									"    postman.setGlobalVariable(\"cpf\", \"12345678910\");",
+									"}",
+									"",
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "69a0f4e5-6353-40e4-9f64-10c15909ef59",
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 201\"] = responseCode.code === 201;",
+									"",
+									"if (responseCode.code === 201) {",
+									"\ttests[\"Header 'Location' is present\"] = postman.getResponseHeader(\"Location\");",
+									"\tvar locationText = postman.getResponseHeader(\"Location\");",
+									"\tif (locationText) {",
+									"\t\tvar arr = locationText.split('/');",
+									"\t\tvar clienteId = arr[arr.length - 1];",
+									"\t\tpostman.setGlobalVariable(\"cliente-id\", clienteId);",
+									"\t}",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"cpf\": \"{{cpf}}\",\r\n   \"dataDeNascimento\": \"07-07-1983\",\r\n   \"endereco\": {\r\n      \"estado\": \"SP\",\r\n      \"cidade\": \"Campinas\",\r\n      \"rua\": \"Francisco Glicério\",\r\n      \"numero\": 123,\r\n      \"complemento\": \"casa\",\r\n      \"cep\": 13033000\r\n   },\r\n   \"telefones\": [\r\n      {\r\n         \"tipo\": \"FIXO\",\r\n         \"numero\": 1930000000\r\n      },\r\n      {\r\n         \"tipo\": \"CELULAR\",\r\n         \"numero\": 19991692677\r\n      }\r\n   ]\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8081/cliente/v1/clientes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"cliente",
+								"v1",
+								"clientes"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Novo Cliente com tipo de telefone inválido",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "2f7bdeb9-d998-4421-a686-55f21fb13dd7",
+								"type": "text/javascript",
+								"exec": [
+									"postman.clearGlobalVariable(\"cliente-id\");",
+									"var cpf = postman.getGlobalVariable(\"cpf\");",
+									"if (cpf != null) {",
+									"    cpf = Number(cpf);",
+									"    cpf++;",
+									"    postman.setGlobalVariable(\"cpf\", cpf);",
+									"} else {",
+									"    postman.setGlobalVariable(\"cpf\", \"12345678910\");",
+									"}",
+									"",
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "69a0f4e5-6353-40e4-9f64-10c15909ef59",
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 201\"] = responseCode.code === 201;",
+									"",
+									"if (responseCode.code === 201) {",
+									"\ttests[\"Header 'Location' is present\"] = postman.getResponseHeader(\"Location\");",
+									"\tvar locationText = postman.getResponseHeader(\"Location\");",
+									"\tif (locationText) {",
+									"\t\tvar arr = locationText.split('/');",
+									"\t\tvar clienteId = arr[arr.length - 1];",
+									"\t\tpostman.setGlobalVariable(\"cliente-id\", clienteId);",
+									"\t}",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"nome\": \"Gustavo\",\r\n   \"cpf\": \"{{cpf}}\",\r\n   \"dataDeNascimento\": \"07-07-1983\",\r\n   \"endereco\": {\r\n      \"estado\": \"SP\",\r\n      \"cidade\": \"Campinas\",\r\n      \"rua\": \"Francisco Glicério\",\r\n      \"numero\": 123,\r\n      \"complemento\": \"casa\",\r\n      \"cep\": 13033000\r\n   },\r\n   \"telefones\": [\r\n      {\r\n         \"tipo\": \"MOVEL\",\r\n         \"numero\": 1930000000\r\n      },\r\n      {\r\n         \"tipo\": \"CELULAR\",\r\n         \"numero\": 19991692677\r\n      }\r\n   ]\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8081/cliente/v1/clientes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"cliente",
+								"v1",
+								"clientes"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Novo Cliente ok",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "2f7bdeb9-d998-4421-a686-55f21fb13dd7",
+								"type": "text/javascript",
+								"exec": [
+									"postman.clearGlobalVariable(\"cliente-id\");",
+									"var cpf = postman.getGlobalVariable(\"cpf\");",
+									"if (cpf != null) {",
+									"    cpf = Number(cpf);",
+									"    cpf++;",
+									"    postman.setGlobalVariable(\"cpf\", cpf);",
+									"} else {",
+									"    postman.setGlobalVariable(\"cpf\", \"12345678910\");",
+									"}",
+									"",
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "69a0f4e5-6353-40e4-9f64-10c15909ef59",
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 201\"] = responseCode.code === 201;",
+									"",
+									"if (responseCode.code === 201) {",
+									"\ttests[\"Header 'Location' is present\"] = postman.getResponseHeader(\"Location\");",
+									"\tvar locationText = postman.getResponseHeader(\"Location\");",
+									"\tif (locationText) {",
+									"\t\tvar arr = locationText.split('/');",
+									"\t\tvar clienteId = arr[arr.length - 1];",
+									"\t\tpostman.setGlobalVariable(\"cliente-id\", clienteId);",
+									"\t}",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"nome\": \"Gustavo\",\r\n   \"cpf\": \"{{cpf}}\",\r\n   \"dataDeNascimento\": \"07-07-1983\",\r\n   \"endereco\": {\r\n      \"estado\": \"SP\",\r\n      \"cidade\": \"Campinas\",\r\n      \"rua\": \"Francisco Glicério\",\r\n      \"numero\": 123,\r\n      \"complemento\": \"casa\",\r\n      \"cep\": 13033000\r\n   },\r\n   \"telefones\": [\r\n      {\r\n         \"tipo\": \"FIXO\",\r\n         \"numero\": 1930000000\r\n      },\r\n      {\r\n         \"tipo\": \"CELULAR\",\r\n         \"numero\": 19991692677\r\n      }\r\n   ]\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8081/cliente/v1/clientes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"cliente",
+								"v1",
+								"clientes"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Atualiza Cliente com data de nascimento inválida",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"nome\": \"Gustavo Rubin\",\r\n   \"dataDeNascimento\": 123,\r\n   \"endereco\": {\r\n      \"estado\": \"SP\",\r\n      \"numero\": 123,\r\n      \"complemento\": \"casa\"\r\n   }\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8081/cliente/v1/clientes/{{cliente-id}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"cliente",
+								"v1",
+								"clientes",
+								"{{cliente-id}}"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Consulta Cliente inexistente",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"nome\": \"Gustavo\",\r\n   \"cpf\": 22303076811,\r\n   \"dataDeNascimento\": \"1983-07-07\",\r\n   \"endereco\": {\r\n      \"estado\": \"SP\",\r\n      \"cidade\": \"Campinas\",\r\n      \"rua\": \"Francisco Glicério\",\r\n      \"numero\": 123,\r\n      \"complemento\": \"casa\",\r\n      \"cep\": 13033000\r\n   },\r\n   \"telefones\": [\r\n      {\r\n         \"tipo\": \"fixo\",\r\n         \"numero\": 1930000000\r\n      },\r\n      {\r\n         \"tipo\": \"celular\",\r\n         \"numero\": 19991692677\r\n      }\r\n   ]\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8081/cliente/v1/clientes/1234",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"cliente",
+								"v1",
+								"clientes",
+								"1234"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Exclui Cliente inexistente",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"nome\": \"Gustavo\",\r\n   \"cpf\": 22303076811,\r\n   \"dataDeNascimento\": \"1983-07-07\",\r\n   \"endereco\": {\r\n      \"estado\": \"SP\",\r\n      \"cidade\": \"Campinas\",\r\n      \"rua\": \"Francisco Glicério\",\r\n      \"numero\": 123,\r\n      \"complemento\": \"casa\",\r\n      \"cep\": 13033000\r\n   },\r\n   \"telefones\": [\r\n      {\r\n         \"tipo\": \"fixo\",\r\n         \"numero\": 1930000000\r\n      },\r\n      {\r\n         \"tipo\": \"celular\",\r\n         \"numero\": 19991692677\r\n      }\r\n   ]\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8081/cliente/v1/clientes/1234",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"cliente",
+								"v1",
+								"clientes",
+								"1234"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "ef555f31-b696-41d6-9c76-25aba78a09d1",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "27aa8348-3701-4617-a33b-3bd7c4c75a37",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
 		}
 	]
 }

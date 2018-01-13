@@ -85,6 +85,18 @@
 				},
 				{
 					"name": "Atualiza Cliente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8e33196b-5590-415b-bfe6-fa332958af35",
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 204\"] = responseCode.code === 204;"
+								]
+							}
+						}
+					],
 					"request": {
 						"method": "PATCH",
 						"header": [
@@ -117,6 +129,18 @@
 				},
 				{
 					"name": "Consulta Cliente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "fc0c261f-9735-48c7-9303-722d09ff50fa",
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [
@@ -149,6 +173,18 @@
 				},
 				{
 					"name": "Exclui Cliente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "32ebb24a-524b-42e3-86e2-6c0403600615",
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 204\"] = responseCode.code === 204;"
+								]
+							}
+						}
+					],
 					"request": {
 						"method": "DELETE",
 						"header": [
@@ -213,19 +249,9 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "2f7bdeb9-d998-4421-a686-55f21fb13dd7",
+								"id": "efa061cf-98a3-4f8c-bd28-60465a00e17e",
 								"type": "text/javascript",
 								"exec": [
-									"postman.clearGlobalVariable(\"cliente-id\");",
-									"var cpf = postman.getGlobalVariable(\"cpf\");",
-									"if (cpf != null) {",
-									"    cpf = Number(cpf);",
-									"    cpf++;",
-									"    postman.setGlobalVariable(\"cpf\", cpf);",
-									"} else {",
-									"    postman.setGlobalVariable(\"cpf\", \"12345678910\");",
-									"}",
-									"",
 									""
 								]
 							}
@@ -233,20 +259,10 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "69a0f4e5-6353-40e4-9f64-10c15909ef59",
+								"id": "7d32ef75-dca1-41dc-adc7-c04aa8545ebe",
 								"type": "text/javascript",
 								"exec": [
-									"tests[\"Status code is 201\"] = responseCode.code === 201;",
-									"",
-									"if (responseCode.code === 201) {",
-									"\ttests[\"Header 'Location' is present\"] = postman.getResponseHeader(\"Location\");",
-									"\tvar locationText = postman.getResponseHeader(\"Location\");",
-									"\tif (locationText) {",
-									"\t\tvar arr = locationText.split('/');",
-									"\t\tvar clienteId = arr[arr.length - 1];",
-									"\t\tpostman.setGlobalVariable(\"cliente-id\", clienteId);",
-									"\t}",
-									"}"
+									"tests[\"Status code is 400\"] = responseCode.code === 400;"
 								]
 							}
 						}
@@ -286,19 +302,9 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "2f7bdeb9-d998-4421-a686-55f21fb13dd7",
+								"id": "be5139c7-0196-4e53-980c-d45fc5b2aa52",
 								"type": "text/javascript",
 								"exec": [
-									"postman.clearGlobalVariable(\"cliente-id\");",
-									"var cpf = postman.getGlobalVariable(\"cpf\");",
-									"if (cpf != null) {",
-									"    cpf = Number(cpf);",
-									"    cpf++;",
-									"    postman.setGlobalVariable(\"cpf\", cpf);",
-									"} else {",
-									"    postman.setGlobalVariable(\"cpf\", \"12345678910\");",
-									"}",
-									"",
 									""
 								]
 							}
@@ -306,20 +312,10 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "69a0f4e5-6353-40e4-9f64-10c15909ef59",
+								"id": "321e785b-4f4c-4f93-84dd-e6e8c1026609",
 								"type": "text/javascript",
 								"exec": [
-									"tests[\"Status code is 201\"] = responseCode.code === 201;",
-									"",
-									"if (responseCode.code === 201) {",
-									"\ttests[\"Header 'Location' is present\"] = postman.getResponseHeader(\"Location\");",
-									"\tvar locationText = postman.getResponseHeader(\"Location\");",
-									"\tif (locationText) {",
-									"\t\tvar arr = locationText.split('/');",
-									"\t\tvar clienteId = arr[arr.length - 1];",
-									"\t\tpostman.setGlobalVariable(\"cliente-id\", clienteId);",
-									"\t}",
-									"}"
+									"tests[\"Status code is 400\"] = responseCode.code === 400;"
 								]
 							}
 						}
@@ -359,19 +355,9 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "2f7bdeb9-d998-4421-a686-55f21fb13dd7",
+								"id": "de66d0f4-7682-488d-a2e0-deea6ca88eff",
 								"type": "text/javascript",
 								"exec": [
-									"postman.clearGlobalVariable(\"cliente-id\");",
-									"var cpf = postman.getGlobalVariable(\"cpf\");",
-									"if (cpf != null) {",
-									"    cpf = Number(cpf);",
-									"    cpf++;",
-									"    postman.setGlobalVariable(\"cpf\", cpf);",
-									"} else {",
-									"    postman.setGlobalVariable(\"cpf\", \"12345678910\");",
-									"}",
-									"",
 									""
 								]
 							}
@@ -379,20 +365,10 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "69a0f4e5-6353-40e4-9f64-10c15909ef59",
+								"id": "fe7eb0cd-1aa6-431d-9232-b625ad4c17ce",
 								"type": "text/javascript",
 								"exec": [
-									"tests[\"Status code is 201\"] = responseCode.code === 201;",
-									"",
-									"if (responseCode.code === 201) {",
-									"\ttests[\"Header 'Location' is present\"] = postman.getResponseHeader(\"Location\");",
-									"\tvar locationText = postman.getResponseHeader(\"Location\");",
-									"\tif (locationText) {",
-									"\t\tvar arr = locationText.split('/');",
-									"\t\tvar clienteId = arr[arr.length - 1];",
-									"\t\tpostman.setGlobalVariable(\"cliente-id\", clienteId);",
-									"\t}",
-									"}"
+									"tests[\"Status code is 400\"] = responseCode.code === 400;"
 								]
 							}
 						}
@@ -501,6 +477,18 @@
 				},
 				{
 					"name": "Atualiza Cliente com data de nascimento inválida",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "abefb06c-17c1-4b0c-af27-e9457a211cf0",
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 400\"] = responseCode.code === 400;"
+								]
+							}
+						}
+					],
 					"request": {
 						"method": "PATCH",
 						"header": [
@@ -533,6 +521,18 @@
 				},
 				{
 					"name": "Consulta Cliente inexistente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "fd269491-deaf-4867-bc9c-6dd229174bd3",
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 422\"] = responseCode.code === 422;"
+								]
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [
@@ -565,6 +565,18 @@
 				},
 				{
 					"name": "Exclui Cliente inexistente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e2636bb6-11da-4181-a0b4-78efec840864",
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 422\"] = responseCode.code === 422;"
+								]
+							}
+						}
+					],
 					"request": {
 						"method": "DELETE",
 						"header": [

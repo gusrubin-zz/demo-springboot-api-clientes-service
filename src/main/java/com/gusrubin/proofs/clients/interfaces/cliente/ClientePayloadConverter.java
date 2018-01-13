@@ -4,7 +4,7 @@
 * @author Gustavo Rubin
 */
 
-package com.gusrubin.proofs.clients.interfaces;
+package com.gusrubin.proofs.clients.interfaces.cliente;
 
 import java.sql.Timestamp;
 import java.text.ParseException;
@@ -13,9 +13,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.gusrubin.proofs.clients.domain.Cliente;
-import com.gusrubin.proofs.clients.domain.Endereco;
-import com.gusrubin.proofs.clients.domain.Telefone;
+import com.gusrubin.proofs.clients.domain.cliente.Cliente;
+import com.gusrubin.proofs.clients.domain.endereco.Endereco;
+import com.gusrubin.proofs.clients.domain.telefone.Telefone;
 
 public class ClientePayloadConverter {
 	

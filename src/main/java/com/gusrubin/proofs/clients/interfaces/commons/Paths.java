@@ -5,7 +5,7 @@
 * @author Gustavo Rubin
 */
 
-package com.gusrubin.proofs.clients.interfaces;
+package com.gusrubin.proofs.clients.interfaces.commons;
 
 public class Paths {
 	

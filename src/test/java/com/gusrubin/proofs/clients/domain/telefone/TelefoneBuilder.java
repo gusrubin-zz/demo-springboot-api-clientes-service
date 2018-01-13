@@ -1,4 +1,7 @@
-package com.gusrubin.proofs.clients.domain;
+package com.gusrubin.proofs.clients.domain.telefone;
+
+import com.gusrubin.proofs.clients.domain.telefone.Telefone;
+import com.gusrubin.proofs.clients.domain.telefone.TelefoneType;
 
 public class TelefoneBuilder {
 	

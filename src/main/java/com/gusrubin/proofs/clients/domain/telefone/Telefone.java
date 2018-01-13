@@ -4,7 +4,7 @@
 * @author Gustavo Rubin
 */
 
-package com.gusrubin.proofs.clients.domain;
+package com.gusrubin.proofs.clients.domain.telefone;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,6 +19,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
+
+import com.gusrubin.proofs.clients.domain.cliente.Cliente;
 
 @Entity
 @Table(name = "TELEFONE")

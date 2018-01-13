@@ -5,11 +5,11 @@
 * @author Gustavo Rubin
 */
 
-package com.gusrubin.proofs.clients.interfaces;
+package com.gusrubin.proofs.clients.interfaces.commons;
 
-public class InterfacesCommons {
+public class PayloadTypes {
 	
-	private InterfacesCommons() {
+	private PayloadTypes() {
 	    throw new IllegalStateException("Utility class");
 	}
 	

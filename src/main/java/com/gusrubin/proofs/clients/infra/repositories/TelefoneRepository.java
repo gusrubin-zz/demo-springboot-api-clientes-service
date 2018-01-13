@@ -4,14 +4,14 @@
 * @author Gustavo Rubin
 */
 
-package com.gusrubin.proofs.clients.infra;
+package com.gusrubin.proofs.clients.infra.repositories;
 
 import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.gusrubin.proofs.clients.domain.Telefone;
+import com.gusrubin.proofs.clients.domain.telefone.Telefone;
 
 @Repository
 public interface TelefoneRepository extends CrudRepository<Telefone, Long> {

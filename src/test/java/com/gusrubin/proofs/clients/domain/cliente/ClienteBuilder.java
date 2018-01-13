@@ -1,8 +1,11 @@
-package com.gusrubin.proofs.clients.domain;
+package com.gusrubin.proofs.clients.domain.cliente;
 
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.Date;
+
+import com.gusrubin.proofs.clients.domain.cliente.Cliente;
+import com.gusrubin.proofs.clients.domain.endereco.EnderecoBuilder;
 
 public class ClienteBuilder {
 	

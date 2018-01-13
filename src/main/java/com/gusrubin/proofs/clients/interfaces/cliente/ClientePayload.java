@@ -4,7 +4,7 @@
 * @author Gustavo Rubin
 */
 
-package com.gusrubin.proofs.clients.interfaces;
+package com.gusrubin.proofs.clients.interfaces.cliente;
 
 import java.util.List;
 

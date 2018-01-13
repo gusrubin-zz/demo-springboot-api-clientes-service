@@ -4,7 +4,7 @@
 * @author Gustavo Rubin
 */
 
-package com.gusrubin.proofs.clients.domain;
+package com.gusrubin.proofs.clients.domain.telefone;
 
 public enum TelefoneType {
 	

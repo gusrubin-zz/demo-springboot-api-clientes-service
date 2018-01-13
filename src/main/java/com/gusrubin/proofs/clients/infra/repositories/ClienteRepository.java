@@ -4,13 +4,13 @@
 * @author Gustavo Rubin
 */
 
-package com.gusrubin.proofs.clients.infra;
+package com.gusrubin.proofs.clients.infra.repositories;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.gusrubin.proofs.clients.domain.Cliente;
+import com.gusrubin.proofs.clients.domain.cliente.Cliente;
 
 @Repository
 public interface ClienteRepository extends CrudRepository<Cliente, String> {

@@ -5,16 +5,19 @@
 * @author Gustavo Rubin
 */
 
-package com.gusrubin.proofs.clients.domain;
+package com.gusrubin.proofs.clients.domain.cliente;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.gusrubin.proofs.clients.infra.ClienteRepository;
-import com.gusrubin.proofs.clients.infra.EnderecoRepository;
-import com.gusrubin.proofs.clients.infra.TelefoneRepository;
+import com.gusrubin.proofs.clients.domain.endereco.Endereco;
+import com.gusrubin.proofs.clients.domain.telefone.Telefone;
+import com.gusrubin.proofs.clients.infra.repositories.ClienteRepository;
+import com.gusrubin.proofs.clients.infra.repositories.EnderecoRepository;
+import com.gusrubin.proofs.clients.infra.repositories.TelefoneRepository;
+import com.gusrubin.proofs.clients.interfaces.commons.ExceptionErrorMessages;
 
 @Service
 public class ClienteService {
@@ -34,7 +37,7 @@ public class ClienteService {
 	
 	public Cliente create(Cliente novoCliente) {
 		if (clienteRepository.countByCpf(novoCliente.getCpf()) != 0) {
-			throw new IllegalStateException("CPF de cliente já cadastrado.");
+			throw new IllegalStateException(ExceptionErrorMessages.ERROR_422_CLIENT_CPF_ALREADY_REGISTERED);
 		}
 		enderecoRepository.save(novoCliente.getEndereco());
 		telefoneRepository.save(novoCliente.getTelefones());
@@ -48,7 +51,7 @@ public class ClienteService {
 		}
 		if (clienteAtualizado.getCpf() != null) {
 			if (!clienteAtualizado.getCpf().equals(cliente.getCpf())) {
-				throw new IllegalStateException("Não é permitida a atualização de CPF.");
+				throw new IllegalStateException(ExceptionErrorMessages.ERROR_422_CLIENT_CPF_CAN_NOT_BE_UPDATED);
 			}
 		}
 		if (clienteAtualizado.getDataDeNascimento() != null) {
@@ -94,7 +97,7 @@ public class ClienteService {
 	public Cliente get(String clienteId) {
 		Cliente cliente = clienteRepository.findOne(clienteId);
 		if (cliente == null) {
-			throw new IllegalStateException("Cliente não cadastrado.");
+			throw new IllegalStateException(ExceptionErrorMessages.ERROR_422_CLIENT_DO_NOT_EXIST);
 		}
 		return cliente;
 	}
@@ -102,7 +105,7 @@ public class ClienteService {
 	public void delete(String clienteId) {
 		Cliente cliente = clienteRepository.findOne(clienteId);
 		if (cliente == null) {
-			throw new IllegalStateException("Cliente não cadastrado.");
+			throw new IllegalStateException(ExceptionErrorMessages.ERROR_422_CLIENT_DO_NOT_EXIST);
 		}
 		clienteRepository.delete(cliente);
 	}

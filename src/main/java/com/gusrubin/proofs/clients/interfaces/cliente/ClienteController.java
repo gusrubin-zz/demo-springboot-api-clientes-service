@@ -4,7 +4,7 @@
 * @author Gustavo Rubin
 */
 
-package com.gusrubin.proofs.clients.interfaces;
+package com.gusrubin.proofs.clients.interfaces.cliente;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.gusrubin.proofs.clients.domain.ClienteService;
+import com.gusrubin.proofs.clients.interfaces.commons.PayloadTypes;
+import com.gusrubin.proofs.clients.domain.cliente.ClienteService;
+import com.gusrubin.proofs.clients.interfaces.commons.Paths;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -34,7 +36,7 @@ public class ClienteController {
 	
 	@ApiOperation(value = "Cadastro de novo cliente",
 			notes = "Essa operação possibilita o cadastro de um novo cliente.<br>")
-	@RequestMapping(path = Paths.CLIENTE_BASE_PATH, method = RequestMethod.POST, consumes = InterfacesCommons.APPLICATION_JSON)
+	@RequestMapping(path = Paths.CLIENTE_BASE_PATH, method = RequestMethod.POST, consumes = PayloadTypes.APPLICATION_JSON)
     public ResponseEntity<?> postCliente(@RequestBody ClientePayload requestBody, UriComponentsBuilder uriBuilder) {
         
         ClientePayloadValidator.isCreationValid(requestBody);
@@ -46,7 +48,7 @@ public class ClienteController {
 	
 	@ApiOperation(value = "Atualização de cadastro de cliente",
 			notes = "Essa operação possibilita a atualização de informações de cadastro de um cliente.<br>")
-	@RequestMapping(path = Paths.CLIENTE_SUB_RESOURCE_BASE_PATH, method = RequestMethod.PATCH, consumes = InterfacesCommons.APPLICATION_JSON)
+	@RequestMapping(path = Paths.CLIENTE_SUB_RESOURCE_BASE_PATH, method = RequestMethod.PATCH, consumes = PayloadTypes.APPLICATION_JSON)
     public ResponseEntity<?> patchCliente(@RequestBody ClientePayload requestBody, 
     		@PathVariable(Paths.CLIENTE_ID_PATH_VARIABLE_NAME) String clienteId) {
         
@@ -60,7 +62,7 @@ public class ClienteController {
 	@ApiOperation(value = "Consulta de cadastro de cliente",
 			notes = "Essa operação possibilita consultar informações do cadastro de um cliente.<br>",
 			response = ClientePayload.class)
-	@RequestMapping(path = Paths.CLIENTE_SUB_RESOURCE_BASE_PATH, method = RequestMethod.GET, produces = InterfacesCommons.APPLICATION_JSON)
+	@RequestMapping(path = Paths.CLIENTE_SUB_RESOURCE_BASE_PATH, method = RequestMethod.GET, produces = PayloadTypes.APPLICATION_JSON)
     public ResponseEntity<?> getCliente(@PathVariable(Paths.CLIENTE_ID_PATH_VARIABLE_NAME) String clienteId) {
         
         ClientePayload responseBody = ClientePayloadConverter.toPayload(clienteService.get(clienteId));  

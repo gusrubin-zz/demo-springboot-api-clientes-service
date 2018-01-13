@@ -1,13 +1,19 @@
-package com.gusrubin.proofs.clients.domain;
+package com.gusrubin.proofs.clients.domain.cliente;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import com.gusrubin.proofs.clients.infra.ClienteRepository;
-import com.gusrubin.proofs.clients.infra.EnderecoRepository;
-import com.gusrubin.proofs.clients.infra.TelefoneRepository;
+import com.gusrubin.proofs.clients.domain.cliente.Cliente;
+import com.gusrubin.proofs.clients.domain.cliente.ClienteService;
+import com.gusrubin.proofs.clients.domain.endereco.Endereco;
+import com.gusrubin.proofs.clients.domain.endereco.EnderecoBuilder;
+import com.gusrubin.proofs.clients.domain.telefone.Telefone;
+import com.gusrubin.proofs.clients.domain.telefone.TelefoneBuilder;
+import com.gusrubin.proofs.clients.infra.repositories.ClienteRepository;
+import com.gusrubin.proofs.clients.infra.repositories.EnderecoRepository;
+import com.gusrubin.proofs.clients.infra.repositories.TelefoneRepository;
 
 public class ClienteServiceTest {
 	

@@ -1,4 +1,6 @@
-package com.gusrubin.proofs.clients.domain;
+package com.gusrubin.proofs.clients.domain.endereco;
+
+import com.gusrubin.proofs.clients.domain.endereco.Endereco;
 
 public class EnderecoBuilder {
 	

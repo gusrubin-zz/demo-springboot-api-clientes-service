@@ -4,7 +4,7 @@
 * @author Gustavo Rubin
 */
 
-package com.gusrubin.proofs.clients.domain;
+package com.gusrubin.proofs.clients.domain.cliente;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -22,6 +22,9 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.NotEmpty;
+
+import com.gusrubin.proofs.clients.domain.endereco.Endereco;
+import com.gusrubin.proofs.clients.domain.telefone.Telefone;
 
 @Entity
 @Table(name = "CLIENTE")

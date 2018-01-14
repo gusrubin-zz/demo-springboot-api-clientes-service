@@ -1,2 +1,2 @@
 # api-clientes-service
-Micro serviço que disponibilizar CRUD do cadastro de clientes
+Micro serviço que disponibiliza CRUD do cadastro de clientes

@@ -1,4 +1,4 @@
-# demo-api-clientes-service
+# demo-spring-boot-api-clientes-service
 Micro serviço que disponibiliza CRUD do cadastro de clientes em um banco de dados PostgreSql via API REST.
 
 O objetivo deste projeto é demonstrar algumas habilidades técnicas de desenvolvimento de micro serviços REST utilizando o framework Springboot com a linguagem de progamação Java 8, gerenciador de pacotes Maven, a ferramenta Flyway para automação de migrações de banco de dados, a construção de testes unitários utilizando o framework JUnit e Mockito, geração da documentação da API embarcada no próprio código Java através das anotações do framework Springfox, construção de caderno de testes incluindo pequenas automações em Javascript na ferramenta Postman, entre outras tecnologias envolvidas neste processo. O padrão de projeto utilizado no desenvolvimento do micro serviço foi o Domain Driven Design (DDD) que separa os blocos de implementação em contextos de interface de usuário, aplicação, domínio e infra-estrutura.
